@@ -7,8 +7,8 @@ describe('aglct-ng App', () => {
     page = new AglctNgPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying AGL Code Test!', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('AGL Code Test!');
   });
 });
