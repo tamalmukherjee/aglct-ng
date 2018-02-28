@@ -5,10 +5,10 @@ import { ApiServiceMock } from '../../mocks/api.service.mock';
 import { ComponentFixture } from '@angular/core/testing';
 
 describe('HomeComponent', () => {
-    let comp: HomeComponent;
+    let component: HomeComponent;
     let fixture: ComponentFixture<HomeComponent>;
 
-    beforeEach(async () => {
+    beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
                 HomeComponent
@@ -18,15 +18,15 @@ describe('HomeComponent', () => {
             ]
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(HomeComponent);
-            comp = fixture.componentInstance;
+            component = fixture.componentInstance;
         });
-    });
+    }));
 
     it('should categorize dataset by owner gender', async(() => {
         // act
-        comp.getData();
+        component.getData();
 
         // assert
-        expect(comp.viewModel.error).toBe(false);
+        expect(component.viewModel.error).toBe(false);
     }));
 });
