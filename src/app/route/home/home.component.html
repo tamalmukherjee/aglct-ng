@@ -1,8 +1,9 @@
-<div *ngIf="viewModel.error">Oops, something went wrong...Please try again later.</div>
-<div *ngFor="let catGroup of viewModel.catData">
-    <h2>{{catGroup.ownerGender}}</h2>
-    <ul>
-        <li *ngIf="catGroup.cats.length == 0">No cats</li>
-        <li *ngFor="let cat of catGroup.cats">{{cat}}</li>
-    </ul>
-</div>
+<div class="error" *ngIf="viewModel.error; else showData">Oops, something went wrong...Please try again later.</div>
+<ng-template #showData>
+    <div *ngFor="let catGroup of viewModel.catData">
+        <h2>{{catGroup.ownerGender}}</h2>
+        <ul>
+            <li *ngFor="let cat of catGroup.cats">{{cat}}</li>
+        </ul>
+    </div>
+</ng-template>

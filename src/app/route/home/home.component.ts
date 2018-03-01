@@ -21,38 +21,36 @@ export class HomeComponent implements OnInit {
 
     filterCatsByOwnerGender(data: People[]): CatsByOwnerGender[] {
         const returnData: CatsByOwnerGender[] = [];
-        if (data === undefined) { return returnData; }
+        if (data !== undefined) {
 
-        const reducedData = _.reduce(data, function (result, owner) {
-            const petCats = _.filter(owner.pets, { 'type': 'Cat' });
-            _.forEach(petCats, function (value) {
-                if (!result[owner.gender]) {
-                    result[owner.gender] = [];
-                }
-                result[owner.gender].push(value.name);
-            });
-            return result;
-        }, {});
+            const reducedData = _.reduce(data, function (result, owner) {
+                const petCats = _.filter(owner.pets, { 'type': 'Cat' });
+                _.forEach(petCats, function (value) {
+                    if (!result[owner.gender]) {
+                        result[owner.gender] = [];
+                    }
+                    result[owner.gender].push(value.name);
+                });
+                return result;
+            }, {});
 
-        _.forEach(reducedData, function (value, key) {
-            returnData.push({
-                ownerGender: key,
-                cats: _.sortBy(value)
+            _.forEach(reducedData, function (value, key) {
+                returnData.push({
+                    ownerGender: key,
+                    cats: _.sortBy(value)
+                });
             });
-        });
+        }
+
         return returnData;
     }
 
-    getData() {
+    ngOnInit(): void {
         this._api.getPeople().subscribe((data) => {
             this.viewModel.catData = this.filterCatsByOwnerGender(data);
         }, (err) => {
             console.error(err);
             this.viewModel.error = true;
         });
-    }
-
-    ngOnInit(): void {
-        this.getData();
     }
 }
