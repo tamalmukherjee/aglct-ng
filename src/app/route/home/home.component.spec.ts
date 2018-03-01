@@ -85,7 +85,7 @@ describe('HomeComponent', () => {
         const inputData: People[] = JSON.parse('[{"name":"Bob","gender":"Male","age":23,"pets":[{"name":"Fido","type":"Dog"}]},{"name":"Jennifer","gender":"Female","age":18,"pets":[{"name":"Garfield","type":"Cat"}]}]');
 
         // act
-        let filteredData = component.filterCatsByOwnerGender(inputData);
+        const filteredData = component.filterCatsByOwnerGender(inputData);
 
         // assert
         expect(filteredData.length).toBe(1);
